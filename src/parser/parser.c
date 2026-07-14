@@ -19,7 +19,7 @@ void initParser(Parser* parser, Token** tokens) {
 }
 
 void parse(Parser* parser) {
-  while ((*parser).current < total_tokens && (*parser).tokens[(*parser).current].type != TOK_EOF) {
+  while ((*parser).tokens[(*parser).current].type != TOK_EOF) {
     if ((*parser).errornow.type == PARSE_ERR){
       break;
     }
