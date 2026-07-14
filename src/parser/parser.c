@@ -11,7 +11,7 @@ void initParser(Parser* parser, Token** tokens) {
   (*parser).current = 0;
   (*parser).asts.buffer = 10;
   (*parser).asts.used = 0;
-  (*parser).asts.nodes = malloc(sizeof(ASTNode) * (*parser).asts.buffer);
+  (*parser).asts.nodes = malloc(sizeof(ASTNode) * (*parser).asts.buffer); //To allocate memory
 
   if ((*parser).asts.nodes == NULL){ //If memory failed, then exit , common sense right =)
     exit(1); //TO exit
@@ -19,7 +19,7 @@ void initParser(Parser* parser, Token** tokens) {
 }
 
 void parse(Parser* parser) {
-  while ((*parser).tokens[(*parser).current].type != TOK_EOF) {
+  while ((*parser).tokens[(*parser).current].type != TOK_EOF) { //Maybe had this bug, the old-school maybe beat it now?
     if ((*parser).errornow.type == PARSE_ERR){
       break;
     }
