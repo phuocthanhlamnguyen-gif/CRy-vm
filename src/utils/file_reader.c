@@ -11,7 +11,7 @@ char* readFile(char* filename) {
   }
   
   int size = lseek(fd, 0, SEEK_OUT); // Find the size of the file
-  lseek(fd, 0, SEEK_SET); // Low-level why of rewinding
+  lseek(fd, 0, SEEK_SET); // Low-level of rewinding
   
   char* buffer = malloc(sizeof(char) * size+1); // I'll keep it
 
