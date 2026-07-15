@@ -10,7 +10,11 @@ char* readFile(char* filename) {
     exit(1); //To quit? Yeah
   }
   
-  int size = lseek(fd, 0, SEEK_OUT); // Find the size of the file
+  int size = lseek(fd, 0, SEEK_END); // Find the size of the file
+  if (size < 0){
+    printf("cry: Failed to load\n");
+    exit(1);
+  }
   lseek(fd, 0, SEEK_SET); // Low-level of rewinding
   
   char* buffer = malloc(sizeof(char) * size+1); // I'll keep it
@@ -21,6 +25,11 @@ char* readFile(char* filename) {
   }
   
   read(fd, buffer, size); // Read the file
+  if (bytesRead < 0) { // Check if faile
+    free(buffer);
+    close(fd);
+    return NULL;
+  }
   buffer[size] = '\0'; // Add a null-terminator so the code don't crash =)
   close(fd); //Close the file , duh
   return buffer; //Returning buffer? , ok 
