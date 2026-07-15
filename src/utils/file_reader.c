@@ -30,7 +30,7 @@ char* readFile(char* filename) {
     close(fd);
     return NULL;
   }
-  buffer[size] = '\0'; // Add a null-terminator so the code don't crash =)
+  buffer[bytesRead] = '\0'; // Add a null-terminator so the code don't crash =)
   close(fd); //Close the file , duh
   return buffer; //Returning buffer? , ok 
 }
