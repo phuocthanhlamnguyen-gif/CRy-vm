@@ -17,15 +17,15 @@ char* readFile(char* filename) {
   }
   lseek(fd, 0, SEEK_SET); // Low-level of rewinding
   
-  char* buffer = malloc(sizeof(char) * size+1); // I'll keep it
+  char* buffer = malloc(sizeof(char) * (size+1)); // I'll keep it
 
   if (buffer == NULL) { //You know, if buffer equal to No string
     close(fd);  //Ya'll closing the file, like closing the barn
     return NULL;
   }
   
-  read(fd, buffer, size); // Read the file
-  if (bytesRead < 0) { // Check if faile
+  int bytesRead = read(fd, buffer, size); // Read the file
+  if (bytesRead < 0) { // Check if fail
     free(buffer);
     close(fd);
     return NULL;
